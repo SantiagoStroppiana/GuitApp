@@ -1,0 +1,268 @@
+.main-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  color: var(--dark);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.current-date {
+  color: var(--secondary);
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.main-balance-section {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.primary-balance h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+.balance-card-main {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.account-type {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.balance-amount-main {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.btn-see-more {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-see-more:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.all-accounts-preview {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.accounts-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mini-account-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.mini-account-name {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.mini-account-balance {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.total-balance {
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.dashboard-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.monthly-summary,
+.expenses-chart {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.monthly-summary h3,
+.expenses-chart h3 {
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.summary-cards-mini {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.summary-card-mini {
+  text-align: center;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border-left: 4px solid var(--border);
+}
+
+.summary-card-mini.income {
+  background: rgba(16, 185, 129, 0.1);
+  border-left-color: var(--success);
+}
+
+.summary-card-mini.expense {
+  background: rgba(239, 68, 68, 0.1);
+  border-left-color: var(--danger);
+}
+
+.summary-card-mini.balance {
+  background: rgba(37, 99, 235, 0.1);
+  border-left-color: var(--primary);
+}
+
+.summary-label {
+  font-size: 0.75rem;
+  color: var(--secondary);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.summary-value.positive {
+  color: var(--success);
+}
+
+.summary-value.negative {
+  color: var(--danger);
+}
+
+.expenses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: var(--light);
+  border-radius: var(--radius);
+  position: relative;
+}
+
+.expense-category {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.expense-amount {
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.expense-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.expense-fill {
+  height: 100%;
+  background: var(--danger);
+  border-radius: 0 0 var(--radius) var(--radius);
+  transition: width 0.3s ease;
+}
+
+.no-accounts {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  .main-dashboard {
+    padding: 0.5rem;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 2rem;
+  }
+  
+  .balance-card-main {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .balance-amount-main {
+    font-size: 2rem;
+  }
+  
+  .dashboard-summary {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-cards-mini {
+    grid-template-columns: 1fr;
+  }
+  
+  .accounts-mini-grid {
+    grid-template-columns: 1fr;
+  }
+}
