@@ -11,9 +11,11 @@
     "electron": "wait-on http://localhost:5173 && electron .",
     "electron-dev": "concurrently \"npm run dev\" \"npm run electron\"",
     "electron-pack": "electron-builder",
-    "preelectron-pack": "npm run build"
+    "preelectron-pack": "npm run build",
+    "reset-db": "node electron/reset-db.js"
   },
   "main": "electron/main.js",
+  "homepage": "./",
   "build": {
     "appId": "com.finanzas.app",
     "productName": "Gestor de Finanzas",

@@ -14,5 +14,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
   deleteTransaction: (id) => ipcRenderer.invoke('delete-transaction', id),
   
   // Balance mensual
-  getMonthlyBalance: (month, year) => ipcRenderer.invoke('get-monthly-balance', month, year)
+  getMonthlyBalance: (month, year) => ipcRenderer.invoke('get-monthly-balance', month, year),
+  
+  // Categorías de gastos
+  getExpenseCategories: () => ipcRenderer.invoke('get-expense-categories'),
+  getFixedAndVariableExpenses: (month, year) => ipcRenderer.invoke('get-fixed-variable-expenses', month, year)
 });

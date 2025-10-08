@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-const { initDatabase, getAccounts, createAccount, updateAccount, deleteAccount, getTransactions, createTransaction, updateTransaction, deleteTransaction, getMonthlyBalance } = require('./db');
+const { initDatabase, getAccounts, createAccount, updateAccount, deleteAccount, getTransactions, createTransaction, updateTransaction, deleteTransaction, getMonthlyBalance, getExpenseCategories, getFixedAndVariableExpenses } = require('./db');
 
 let mainWindow;
 
@@ -48,3 +48,5 @@ ipcMain.handle('create-transaction', (event, transaction) => createTransaction(t
 ipcMain.handle('update-transaction', (event, id, transaction) => updateTransaction(id, transaction));
 ipcMain.handle('delete-transaction', (event, id) => deleteTransaction(id));
 ipcMain.handle('get-monthly-balance', (event, month, year) => getMonthlyBalance(month, year));
+ipcMain.handle('get-expense-categories', () => getExpenseCategories());
+ipcMain.handle('get-fixed-variable-expenses', (event, month, year) => getFixedAndVariableExpenses(month, year));

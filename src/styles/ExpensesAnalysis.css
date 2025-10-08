@@ -1,7 +1,7 @@
 .expenses-analysis {
-  max-width: 1200px;
+  max-width: min(1200px, 95vw);
   margin: 0 auto;
-  padding: 1rem;
+  padding: var(--spacing-md);
 }
 
 .analysis-header {
@@ -12,13 +12,13 @@
 }
 
 .analysis-header h2 {
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 1.875rem;
   font-weight: 700;
 }
 
 .current-month {
-  color: var(--secondary);
+  color: var(--text-secondary);
   font-size: 1rem;
   text-transform: capitalize;
 }
@@ -29,10 +29,11 @@
 
 .salary-card {
   background: linear-gradient(135deg, var(--warning) 0%, #f59e0b 100%);
-  color: white;
+  color: var(--text-primary);
   padding: 2rem;
   border-radius: var(--radius);
   margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
 }
 
 .salary-card h3 {
@@ -41,7 +42,7 @@
 }
 
 .salary-form .form-group label {
-  color: white;
+  color: var(--text-primary);
   margin-bottom: 1rem;
   display: block;
 }
@@ -71,23 +72,25 @@
 }
 
 .salary-analysis {
-  background: white;
+  background: var(--bg-primary);
   padding: 1.5rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
 }
 
 .analysis-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: var(--spacing-md);
 }
 
 .analysis-card {
   text-align: center;
   padding: 1.5rem;
   border-radius: var(--radius);
-  border-left: 4px solid var(--border);
+  border-left: 4px solid var(--border-color);
+  border: 1px solid var(--border-color);
 }
 
 .analysis-card.remaining {
@@ -101,7 +104,7 @@
 }
 
 .analysis-card h4 {
-  color: var(--secondary);
+  color: var(--text-secondary);
   font-size: 0.875rem;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -110,27 +113,28 @@
 .analysis-amount {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--dark);
+  color: var(--text-primary);
   margin-bottom: 0.25rem;
 }
 
 .analysis-percentage {
-  color: var(--secondary);
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 
 .expenses-breakdown {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
 }
 
 .expenses-section {
-  background: white;
+  background: var(--bg-primary);
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
 }
 
 .section-header {
@@ -138,13 +142,13 @@
 }
 
 .section-header h3 {
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 1.25rem;
   margin-bottom: 0.25rem;
 }
 
 .section-subtitle {
-  color: var(--secondary);
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 
@@ -160,7 +164,8 @@
   align-items: center;
   padding: 1rem;
   border-radius: var(--radius);
-  border-left: 3px solid var(--border);
+  border-left: 3px solid var(--border-color);
+  border: 1px solid var(--border-color);
 }
 
 .expense-item.fixed {
@@ -182,12 +187,12 @@
 .expense-category {
   font-weight: 500;
   text-transform: capitalize;
-  color: var(--dark);
+  color: var(--text-primary);
 }
 
 .expense-percentage {
   font-size: 0.75rem;
-  color: var(--secondary);
+  color: var(--text-secondary);
 }
 
 .expense-amount {
@@ -216,19 +221,20 @@
 .no-expenses {
   text-align: center;
   padding: 2rem;
-  color: var(--secondary);
+  color: var(--text-secondary);
   font-style: italic;
 }
 
 .recommendations {
-  background: white;
+  background: var(--bg-primary);
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
 }
 
 .recommendations h3 {
-  color: var(--dark);
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
   font-size: 1.25rem;
 }
@@ -242,7 +248,8 @@
 .recommendation {
   padding: 1rem;
   border-radius: var(--radius);
-  border-left: 4px solid var(--border);
+  border-left: 4px solid var(--border-color);
+  border: 1px solid var(--border-color);
 }
 
 .recommendation.warning {

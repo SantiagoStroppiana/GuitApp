@@ -14,16 +14,17 @@
 }
 
 .transaction-header h2 {
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 1.875rem;
   font-weight: 700;
 }
 
 .transaction-form {
-  background: white;
+  background: var(--bg-primary);
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
   margin-bottom: 2rem;
 }
 
@@ -35,10 +36,11 @@
 }
 
 .transaction-filters {
-  background: white;
+  background: var(--bg-primary);
   padding: 1.5rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
   margin-bottom: 2rem;
 }
 
@@ -50,9 +52,10 @@
 }
 
 .transaction-table-container {
-  background: white;
+  background: var(--bg-primary);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
   overflow: hidden;
 }
 
@@ -62,8 +65,8 @@
 }
 
 .transaction-table th {
-  background: var(--dark);
-  color: white;
+  background: var(--bg-dark);
+  color: var(--text-primary);
   padding: 1rem;
   text-align: left;
   font-weight: 600;
@@ -71,11 +74,12 @@
 
 .transaction-table td {
   padding: 1rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
 }
 
 .transaction-table tr:hover {
-  background: var(--light);
+  background: var(--bg-tertiary);
 }
 
 .transaction-type {
@@ -119,7 +123,7 @@
 }
 
 .edit-row {
-  background: var(--light) !important;
+  background: var(--bg-tertiary) !important;
 }
 
 .edit-row td {
@@ -141,7 +145,7 @@
 }
 
 .pagination-info {
-  color: var(--secondary);
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 

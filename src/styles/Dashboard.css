@@ -5,7 +5,7 @@
 }
 
 .dashboard h2 {
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 1.875rem;
   font-weight: 700;
   margin-bottom: 2rem;
@@ -19,12 +19,13 @@
 }
 
 .summary-card {
-  background: white;
+  background: var(--bg-primary);
   padding: 1.5rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   text-align: center;
   border-left: 4px solid var(--primary);
+  border: 1px solid var(--border-color);
 }
 
 .summary-card.success {
@@ -36,7 +37,7 @@
 }
 
 .summary-card h3 {
-  color: var(--secondary);
+  color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -46,7 +47,7 @@
 .summary-amount {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--dark);
+  color: var(--text-primary);
 }
 
 .summary-amount.success {
@@ -58,10 +59,11 @@
 }
 
 .monthly-section {
-  background: white;
+  background: var(--bg-primary);
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
   margin-bottom: 2rem;
 }
 
@@ -75,7 +77,7 @@
 }
 
 .month-selector h3 {
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 1.25rem;
   font-weight: 600;
 }
@@ -93,11 +95,12 @@
 }
 
 .balance-card {
-  background: var(--light);
+  background: var(--bg-tertiary);
   padding: 1.5rem;
   border-radius: var(--radius);
   text-align: center;
   border-left: 4px solid var(--secondary);
+  border: 1px solid var(--border-color);
 }
 
 .balance-card.income {
@@ -113,7 +116,7 @@
 }
 
 .balance-card h4 {
-  color: var(--secondary);
+  color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -138,7 +141,7 @@
 }
 
 .category-breakdown h4 {
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 1rem;
@@ -154,9 +157,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem;
-  background: var(--light);
+  background: var(--bg-tertiary);
   border-radius: var(--radius);
-  border-left: 3px solid var(--border);
+  border-left: 3px solid var(--border-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
 }
 
 .category-item.income {
@@ -185,14 +190,15 @@
 }
 
 .accounts-overview {
-  background: white;
+  background: var(--bg-primary);
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
 }
 
 .accounts-overview h3 {
-  color: var(--dark);
+  color: var(--text-primary);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
@@ -205,20 +211,21 @@
 }
 
 .account-summary {
-  background: var(--light);
+  background: var(--bg-tertiary);
   padding: 1rem;
   border-radius: var(--radius);
   border-left: 3px solid var(--primary);
+  border: 1px solid var(--border-color);
 }
 
 .account-summary h4 {
-  color: var(--dark);
+  color: var(--text-primary);
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
 
 .account-summary-type {
-  color: var(--secondary);
+  color: var(--text-secondary);
   font-size: 0.75rem;
   text-transform: uppercase;
   margin-bottom: 0.5rem;

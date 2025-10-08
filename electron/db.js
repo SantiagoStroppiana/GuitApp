@@ -5,7 +5,12 @@ const { app } = require('electron');
 let db;
 
 function initDatabase() {
-  const dbPath = path.join(app.getPath('userData'), 'finance.db');
+  const isDev = process.env.NODE_ENV === 'development';
+  const dbPath = isDev 
+    ? path.join(__dirname, 'finance-dev.db')
+    : path.join(app.getPath('userData'), 'finance.db');
+  
+  console.log('Base de datos ubicada en:', dbPath);
   db = new Database(dbPath);
 
   // Crear tablas
@@ -30,7 +35,57 @@ function initDatabase() {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (account_id) REFERENCES accounts (id)
     );
+
+    CREATE TABLE IF NOT EXISTS expense_categories (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      category TEXT NOT NULL UNIQUE,
+      type TEXT NOT NULL CHECK (type IN ('fixed', 'variable')),
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
   `);
+
+  // Insertar categorías de gastos si no existen
+  const categoryCount = db.prepare('SELECT COUNT(*) as count FROM expense_categories').get();
+  if (categoryCount.count === 0) {
+    insertExpenseCategories();
+  }
+}
+
+function insertExpenseCategories() {
+  console.log('Insertando categorías de gastos...');
+  
+  const categories = [
+    // Gastos fijos
+    { category: 'alquiler', type: 'fixed' },
+    { category: 'servicios', type: 'fixed' },
+    { category: 'internet', type: 'fixed' },
+    { category: 'celular', type: 'fixed' },
+    { category: 'seguros', type: 'fixed' },
+    { category: 'suscripciones', type: 'fixed' },
+    { category: 'prestamos', type: 'fixed' },
+    
+    // Gastos variables
+    { category: 'alimentacion', type: 'variable' },
+    { category: 'transporte', type: 'variable' },
+    { category: 'entretenimiento', type: 'variable' },
+    { category: 'compras', type: 'variable' },
+    { category: 'salud', type: 'variable' },
+    { category: 'educacion', type: 'variable' },
+    { category: 'viajes', type: 'variable' },
+    { category: 'regalos', type: 'variable' },
+    { category: 'otros', type: 'variable' }
+  ];
+
+  const insertCategory = db.prepare(`
+    INSERT OR IGNORE INTO expense_categories (category, type)
+    VALUES (?, ?)
+  `);
+
+  categories.forEach(cat => {
+    insertCategory.run(cat.category, cat.type);
+  });
+
+  console.log('Categorías de gastos insertadas correctamente');
 }
 
 function getAccounts() {
@@ -168,11 +223,13 @@ function getMonthlyBalance(month, year) {
   `).get(monthStr, yearStr);
 
   const byCategory = db.prepare(`
-    SELECT category, type, SUM(amount) as total
-    FROM transactions 
-    WHERE strftime("%m", date) = ? 
-    AND strftime("%Y", date) = ?
-    GROUP BY category, type
+    SELECT t.category, t.type, SUM(t.amount) as total,
+           COALESCE(ec.type, 'variable') as expense_type
+    FROM transactions t
+    LEFT JOIN expense_categories ec ON t.category = ec.category
+    WHERE strftime("%m", t.date) = ? 
+    AND strftime("%Y", t.date) = ?
+    GROUP BY t.category, t.type
     ORDER BY total DESC
   `).all(monthStr, yearStr);
 
@@ -181,6 +238,47 @@ function getMonthlyBalance(month, year) {
     expenses: expenses.total,
     balance: income.total - expenses.total,
     byCategory
+  };
+}
+
+function getExpenseCategories() {
+  return db.prepare('SELECT * FROM expense_categories ORDER BY category').all();
+}
+
+function getFixedAndVariableExpenses(month, year) {
+  const monthStr = month.toString().padStart(2, '0');
+  const yearStr = year.toString();
+
+  const fixedExpenses = db.prepare(`
+    SELECT t.category, SUM(t.amount) as total
+    FROM transactions t
+    JOIN expense_categories ec ON t.category = ec.category
+    WHERE t.type = 'expense'
+    AND ec.type = 'fixed'
+    AND strftime("%m", t.date) = ?
+    AND strftime("%Y", t.date) = ?
+    GROUP BY t.category
+    ORDER BY total DESC
+  `).all(monthStr, yearStr);
+
+  const variableExpenses = db.prepare(`
+    SELECT t.category, SUM(t.amount) as total
+    FROM transactions t
+    LEFT JOIN expense_categories ec ON t.category = ec.category
+    WHERE t.type = 'expense'
+    AND (ec.type = 'variable' OR ec.type IS NULL)
+    AND strftime("%m", t.date) = ?
+    AND strftime("%Y", t.date) = ?
+    GROUP BY t.category
+    ORDER BY total DESC
+  `).all(monthStr, yearStr);
+
+  const fixedTotal = fixedExpenses.reduce((sum, exp) => sum + exp.total, 0);
+  const variableTotal = variableExpenses.reduce((sum, exp) => sum + exp.total, 0);
+
+  return {
+    fixed: { expenses: fixedExpenses, total: fixedTotal },
+    variable: { expenses: variableExpenses, total: variableTotal }
   };
 }
 
@@ -194,5 +292,8 @@ module.exports = {
   createTransaction,
   updateTransaction,
   deleteTransaction,
-  getMonthlyBalance
+  getMonthlyBalance,
+  getExpenseCategories,
+  getFixedAndVariableExpenses,
+  insertExpenseCategories
 };

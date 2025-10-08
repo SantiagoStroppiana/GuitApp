@@ -1,13 +1,14 @@
 .quick-actions {
-  background: white;
+  background: var(--bg-primary);
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
 }
 
 .quick-actions h3 {
-  color: var(--dark);
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
   font-size: 1.25rem;
 }
@@ -36,7 +37,7 @@
 
 .income-btn {
   background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
-  color: white;
+  color: var(--text-primary);
 }
 
 .income-btn:hover {
@@ -46,7 +47,7 @@
 
 .expense-btn {
   background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
-  color: white;
+  color: var(--text-primary);
 }
 
 .expense-btn:hover {
@@ -59,10 +60,11 @@
 }
 
 .quick-form {
-  background: var(--light);
+  background: var(--bg-tertiary);
   padding: 1.5rem;
   border-radius: var(--radius);
   border-left: 4px solid var(--primary);
+  border: 1px solid var(--border-color);
   animation: slideDown 0.3s ease;
 }
 
@@ -75,7 +77,7 @@
 }
 
 .quick-form h4 {
-  color: var(--dark);
+  color: var(--text-primary);
   margin-bottom: 1rem;
   font-size: 1.125rem;
 }
